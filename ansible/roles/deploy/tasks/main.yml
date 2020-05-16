@@ -1,0 +1,17 @@
+---
+# tasks file for deploy
+- name: Copy artifact to remote hosts
+  copy:
+          src={{ files }}/{{ ansible_art }}
+          dest={{ dest }}
+          mode=0755
+
+- name: Run app
+  shell: "nohup java -jar /project/{{ ansible_art }} --server.port={{ port }} &" 
+   # register: rusult
+
+  #- name: delete artifact to copy
+  #local_action:
+          #shell: rm -rf /opt/ansible/roles/deploy/files/*
+   #  when: result is changed
+

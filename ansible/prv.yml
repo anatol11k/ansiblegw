@@ -1,0 +1,7 @@
+---
+- name: pr
+  hosts: all
+  roles:
+   - provision
+   - deploy
+
