@@ -1,0 +1,17 @@
+---
+# tasks file for docker_test
+ - name: Create Dockerfile
+   local_action:
+           module: template
+            src=Dockerfile.j2
+            dest=/opt/ansible/roles/docker_test/files/Dockerfile
+            mode=0555
+
+ - name: Create Image           
+   local_action:         
+           module: docker_image
+           build:
+            path: /opt/ansible/roles/docker_test/files
+           state: present
+           name: '{{ ansible_art }}'
+           source: build
