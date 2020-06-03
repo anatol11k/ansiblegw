@@ -13,6 +13,9 @@ properties([
     ])
 ])
 node {
+    String VERSION = "t3405"
+    currentBuild.displayName = "#${BUILD_NUMBER}.MyBetstScript.${VERSION}"
+    
     stage("Clean"){
         sh "uptime"
         deleteDir()
@@ -40,6 +43,7 @@ node {
     }
     stage("Deploy"){
         println("Test Test Test Test")
+        build job: 'pbondar/test34', parameters: [gitParameter(name: 'BRANCH', value: 'master')]
     }
     stage("UiTest"){
         println("Test Test Test Test")
